@@ -1,0 +1,23 @@
+subprojects {
+  apply plugin: 'java'
+
+  group = 'com.pumapunku'
+  version = '0.0.1-SNAPSHOT'
+  sourceCompatibility = JavaVersion.VERSION_11
+
+  ext {
+    springVersion = "2.4.6"
+    springDependencyManagement = "1.0.11.RELEASE"
+    mapstructVersion = "1.4.2.Final"
+    lombokVersion = "1.18.20"
+    lombokMapstructBindingVersion = "0.2.0"
+  }
+
+  repositories {
+    mavenCentral()
+  }
+
+  test {
+    useJUnitPlatform()
+  }
+}
