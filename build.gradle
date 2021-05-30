@@ -2,8 +2,12 @@ subprojects {
   apply plugin: 'java'
 
   group = 'com.pumapunku'
-  version = '0.0.1-SNAPSHOT'
   sourceCompatibility = JavaVersion.VERSION_11
+  
+  if (!isRelease.toBoolean())
+  {
+    version = version + '-SNAPSHOT'
+  }
 
   ext {
     springVersion = "2.4.6"
