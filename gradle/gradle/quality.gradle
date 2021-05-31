@@ -1,4 +1,5 @@
 apply plugin: 'pmd'
+apply plugin: 'com.github.spotbugs' 
 
 pmd {
     consoleOutput = true
@@ -6,4 +7,18 @@ pmd {
     toolVersion = "6.35.0"
     rulesMinimumPriority = 4
     ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
+}
+
+spotbugs {
+    toolVersion = '4.2.3'
+    ignoreFailures = false
+    showProgress = true
+    effort = 'max'
+}
+
+spotbugsMain {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
 }

@@ -41,5 +41,11 @@ public class PetApiExceptionHandler extends ResponseEntityExceptionHandler
         attributes.put("message", exception.getMessage());
         return new ResponseEntity<>(attributes, HttpStatus.BAD_REQUEST);
     }
+    
+    @Override
+    public Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
+    }
 
 }
