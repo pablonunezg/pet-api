@@ -17,26 +17,28 @@ import com.google.cloud.storage.StorageOptions;
 public class FireStoreConfig
 {
     @Bean
-    public Firestore getFireStore(@Value("${firebase.credential.file}") String credentialPath)
-    throws IOException
+    public Firestore getFireStore(@Value("${firebase.credential.file}") String credentialPath) throws IOException
     {
-        ClassLoader cl = this.getClass().getClassLoader();
-        InputStream inputStream = cl.getResourceAsStream(credentialPath);
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-        GoogleCredentials credentials = GoogleCredentials.fromStream(inputStream);
-
-        return FirestoreOptions.newBuilder().setCredentials(credentials)
-                .build().getService();
+        GoogleCredentials credentials;
+        try (InputStream inputStream = classLoader.getResourceAsStream(credentialPath))
+        {
+            credentials = GoogleCredentials.fromStream(inputStream);
+        }
+        
+        return FirestoreOptions.newBuilder().setCredentials(credentials).build().getService();
     }
 
     @Bean
-    public Storage getFireStorage(@Value("${firebase.credential.file}") String credentialPath)
-    throws IOException
+    public Storage getFireStorage(@Value("${firebase.credential.file}") String credentialPath) throws IOException
     {
-        ClassLoader cl = this.getClass().getClassLoader();
-        InputStream inputStream = cl.getResourceAsStream(credentialPath);
-
-        GoogleCredentials credentials = GoogleCredentials.fromStream(inputStream);
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        GoogleCredentials credentials;
+        try (InputStream inputStream = classLoader.getResourceAsStream(credentialPath))
+        {
+            credentials = GoogleCredentials.fromStream(inputStream);
+        }
 
         return StorageOptions.newBuilder().setCredentials(credentials).build().getService();
     }

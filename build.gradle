@@ -1,12 +1,13 @@
 subprojects {
   apply plugin: 'java'
+  apply from: "$rootDir/gradle/gradle/quality.gradle"
 
   group = 'com.pumapunku'
   sourceCompatibility = JavaVersion.VERSION_11
-  
+   
   if (!isRelease.toBoolean())
   {
-    version = version + '-SNAPSHOT'
+    version += '-SNAPSHOT'
   }
 
   ext {
@@ -24,4 +25,11 @@ subprojects {
   test {
     useJUnitPlatform()
   }
+  
+  task sayHello {
+    doLast { println "Hello from ${project.name}" }
+  }
 }
+
+task sayAllHello
+subprojects { subproject -> sayAllHello.dependsOn("$subproject.path:sayHello") }

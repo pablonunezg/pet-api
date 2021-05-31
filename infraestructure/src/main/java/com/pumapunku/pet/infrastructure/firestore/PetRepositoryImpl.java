@@ -10,7 +10,7 @@ import com.pumapunku.pet.domain.repository.PetRepository;
 public class PetRepositoryImpl implements PetRepository
 {
     @Inject
-    PetFirestoreRepository petRepository;
+    private transient PetFirestoreRepository petRepository;
 
     @Override
     public Pet create(Pet pet)

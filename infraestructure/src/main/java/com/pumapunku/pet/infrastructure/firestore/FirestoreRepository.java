@@ -15,13 +15,13 @@ import com.google.cloud.firestore.QuerySnapshot;
 import com.pumapunku.pet.domain.exception.AlreadyExistsException;
 import com.pumapunku.pet.domain.exception.NotFoundException;
 
-public abstract class AbstractFirestoreRepository<T extends Identifier>
+public class FirestoreRepository<T extends Identifier>
 {
-    private final CollectionReference collectionReference;
-    private final String collectionName;
-    private final Class<T> parameterizedType;
+    private transient final CollectionReference collectionReference;
+    private transient final String collectionName;
+    private transient final Class<T> parameterizedType;
 
-    protected AbstractFirestoreRepository(Class<T> parameterizedType, Firestore firestore, String collection)
+    protected FirestoreRepository(Class<T> parameterizedType, Firestore firestore, String collection)
     {
         this.collectionReference = firestore.collection(collection);
 
@@ -56,7 +56,7 @@ public abstract class AbstractFirestoreRepository<T extends Identifier>
 
     private boolean exists(DocumentReference docReference)
     {
-        boolean exist = false;
+        boolean exist;
         try
         {
             exist = docReference.get().get().exists();
@@ -99,7 +99,7 @@ public abstract class AbstractFirestoreRepository<T extends Identifier>
     {
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = collectionReference.get();
 
-        List<QueryDocumentSnapshot> queryDocumentSnapshots = null;
+        List<QueryDocumentSnapshot> queryDocumentSnapshots;
         try
         {
             queryDocumentSnapshots = querySnapshotApiFuture.get().getDocuments();

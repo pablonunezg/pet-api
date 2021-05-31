@@ -5,7 +5,7 @@ import javax.inject.Named;
 import com.google.cloud.firestore.Firestore;
 
 @Named
-public class PetFirestoreRepository extends AbstractFirestoreRepository<PetCollection>
+public class PetFirestoreRepository extends FirestoreRepository<PetCollection>
 {
     protected PetFirestoreRepository(Firestore firestore)
     {

@@ -8,7 +8,7 @@ import javax.inject.Named;
 @Named
 public class DeletePetInteractorImpl implements DeletePetInteractor
 {
-    private PetRepository petRepository;
+    private final transient PetRepository petRepository;
 
     @Inject
     public DeletePetInteractorImpl(PetRepository petRepository)

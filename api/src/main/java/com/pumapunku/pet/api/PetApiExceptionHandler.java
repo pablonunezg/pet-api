@@ -17,46 +17,28 @@ public class PetApiExceptionHandler extends ResponseEntityExceptionHandler
 {
     @ExceptionHandler(NotFoundException.class)
     @ResponseBody
-    private ResponseEntity<Map<String, String>> exceptions(NotFoundException exception)
+    public ResponseEntity<Map<String, String>> exceptions(NotFoundException exception)
     {
-        Map<String, String> attributes = new HashMap<String, String>()
-        {
-            private static final long serialVersionUID = 1L;
-
-            {
-                put("message", exception.getMessage());
-            }
-        };
+        Map<String, String> attributes = new HashMap<String, String>();
+        attributes.put("message", exception.getMessage());
         return new ResponseEntity<>(attributes, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(AlreadyExistsException.class)
     @ResponseBody
-    private ResponseEntity<Map<String, String>> exceptions(AlreadyExistsException exception)
+    public ResponseEntity<Map<String, String>> exceptions(AlreadyExistsException exception)
     {
-        Map<String, String> attributes = new HashMap<String, String>()
-        {
-            private static final long serialVersionUID = 1L;
-
-            {
-                put("message", exception.getMessage());
-            }
-        };
+        Map<String, String> attributes = new HashMap<String, String>();
+        attributes.put("message", exception.getMessage());
         return new ResponseEntity<>(attributes, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
-    private ResponseEntity<Map<String, String>> exceptions(BusinessException exception)
+    public ResponseEntity<Map<String, String>> exceptions(BusinessException exception)
     {
-        Map<String, String> attributes = new HashMap<>()
-        {
-            private static final long serialVersionUID = 1L;
-
-            {
-                put("message", exception.getMessage());
-            }
-        };
+        Map<String, String> attributes = new HashMap<>();
+        attributes.put("message", exception.getMessage());
         return new ResponseEntity<>(attributes, HttpStatus.BAD_REQUEST);
     }
 

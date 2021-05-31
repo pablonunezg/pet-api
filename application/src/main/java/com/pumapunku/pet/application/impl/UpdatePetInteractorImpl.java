@@ -9,7 +9,7 @@ import javax.inject.Named;
 @Named
 public class UpdatePetInteractorImpl implements UpdatePetInteractor
 {
-    private PetRepository petRepository;
+    private final transient PetRepository petRepository;
 
     @Inject
     public UpdatePetInteractorImpl(PetRepository petRepository)

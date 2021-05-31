@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/pet")
 public class PetController
 {
-    private CreatePetInteractor createPetInteractor;
-    private UpdatePetInteractor updatePetInteractor;
-    private DeletePetInteractor deletePetInteractor;
+    private transient CreatePetInteractor createPetInteractor;
+    private transient UpdatePetInteractor updatePetInteractor;
+    private transient DeletePetInteractor deletePetInteractor;
 
     public PetController(
             CreatePetInteractor createPetInteractor,
