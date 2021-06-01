@@ -74,9 +74,9 @@ public class FirestoreRepository<T extends Identifier>
         String documentId = model.getId();
         DocumentReference docReference = collectionReference.document(documentId);
 
-        if (documentId == null || !exists(docReference))
+        if (!exists(docReference))
         {
-            throw new NotFoundException(collectionName, Optional.ofNullable(documentId).orElse("null"));
+            throw new NotFoundException(collectionName, documentId);
         }
 
         docReference.set(model);
