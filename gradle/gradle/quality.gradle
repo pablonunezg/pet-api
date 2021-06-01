@@ -1,6 +1,7 @@
 apply plugin: 'pmd'
 apply plugin: 'com.github.spotbugs'
 apply plugin: 'checkstyle' 
+apply plugin: 'jacoco' 
 
 pmd {
     consoleOutput = true
@@ -36,4 +37,15 @@ checkstyleMain {
 
 checkstyleTest {
     source ='src/test/java'
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
 }
