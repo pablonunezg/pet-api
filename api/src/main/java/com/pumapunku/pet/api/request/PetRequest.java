@@ -1,10 +1,10 @@
 package com.pumapunku.pet.api.request;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class PetRequest

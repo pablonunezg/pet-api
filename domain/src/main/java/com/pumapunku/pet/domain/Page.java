@@ -14,7 +14,6 @@ public class Page<T>
     private List<T> content;
     private Integer pageNumber;
     private Integer pageSize;
-    private Integer total;
 
     public Boolean isLast()
     {
@@ -23,18 +22,18 @@ public class Page<T>
 
     public Integer totalPages()
     {
-        if (content.isEmpty() && total == 0)
+        if (content.isEmpty())
         {
             return 1;
         }
         else
         {
-            return Double.valueOf(Math.ceil(total / pageSize)).intValue();
+            return Double.valueOf(Math.ceil(content.size() / (double)pageSize)).intValue();
         }
     }
 
     public Integer size()
     {
-        return this.content.size();
+        return content.size();
     }
 }

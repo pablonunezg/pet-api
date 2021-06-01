@@ -10,7 +10,7 @@ import com.pumapunku.pet.domain.Pet;
 @Mapper(componentModel = "spring")
 public interface PetMapper
 {
-    PetMapper INSTANCE = Mappers.getMapper( PetMapper.class );
+    PetMapper INSTANCE = Mappers.getMapper(PetMapper.class);
 
     Pet toPet(PetRequest petRequest);
     PetResponse toPetResponse(Pet pet);

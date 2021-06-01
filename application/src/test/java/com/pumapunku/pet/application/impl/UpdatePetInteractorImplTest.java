@@ -1,8 +1,6 @@
 package com.pumapunku.pet.application.impl;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,19 +13,19 @@ import com.pumapunku.pet.domain.Pet;
 import com.pumapunku.pet.domain.repository.PetRepository;
 
 @ExtendWith(MockitoExtension.class)
-class CreatePetInteractorImplTest
+class UpdatePetInteractorImplTest
 {
     @InjectMocks
-    private CreatePetInteractorImpl createPetInteractorImpl;
-    
+    UpdatePetInteractorImpl updatePetInteractorImpl;
+
     @Mock
     private PetRepository petRepositoryMock;
-
+    
     @Test
     void newCreatePetInteractorImpl()
     {
-        CreatePetInteractorImpl createPetInteractorImpl = new CreatePetInteractorImpl(null);
-        assertNotNull(createPetInteractorImpl);
+        UpdatePetInteractorImpl updatePetInteractorImpl = new UpdatePetInteractorImpl(null);
+        assertNotNull(updatePetInteractorImpl);
     }
     
     @Test
@@ -35,11 +33,8 @@ class CreatePetInteractorImplTest
     {
         Pet petParameter = new Pet("1", "Tammy"); 
         assertNotNull(petRepositoryMock);
-        when(petRepositoryMock.create(petParameter)).thenReturn(petParameter);
         
-        Pet pet = createPetInteractorImpl.execute(new Pet("1", "Tammy"));
-        Mockito.verify(petRepositoryMock, Mockito.times(1)).create(petParameter);
-        
-        assertEquals(petParameter, pet);
+        updatePetInteractorImpl.execute(new Pet("1", "Tammy"));
+        Mockito.verify(petRepositoryMock, Mockito.times(1)).update(petParameter);
     }
 }
