@@ -1,5 +1,6 @@
 apply plugin: 'pmd'
-apply plugin: 'com.github.spotbugs' 
+apply plugin: 'com.github.spotbugs'
+apply plugin: 'checkstyle' 
 
 pmd {
     consoleOutput = true
@@ -11,7 +12,7 @@ pmd {
 
 spotbugs {
     toolVersion = '4.2.3'
-    ignoreFailures = false
+    ignoreFailures = true
     showProgress = true
     effort = 'max'
 }
@@ -21,4 +22,18 @@ spotbugsMain {
         xml.enabled = false
         html.enabled = true
     }
+}
+
+checkstyle {
+  toolVersion '8.43'
+  configFile file("$rootDir/gradle/gradle/checkstyle.xml")
+  ignoreFailures = true
+}
+
+checkstyleMain {
+    source ='src/main/java'
+}
+
+checkstyleTest {
+    source ='src/test/java'
 }
