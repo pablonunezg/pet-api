@@ -30,7 +30,7 @@ class PetRepositoryImplTest
         Pet pet = petRepository.create(new Pet(null, "Tammy"));
         assertEquals(new Pet("33", "Tammy"), pet);
     }
-    
+
     @Test
     void update()
     {
