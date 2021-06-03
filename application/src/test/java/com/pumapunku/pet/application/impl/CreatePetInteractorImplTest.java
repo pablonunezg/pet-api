@@ -19,7 +19,7 @@ class CreatePetInteractorImplTest
 {
     @InjectMocks
     private CreatePetInteractorImpl createPetInteractorImpl;
-    
+
     @Mock
     private PetRepository petRepositoryMock;
 
@@ -29,17 +29,17 @@ class CreatePetInteractorImplTest
         CreatePetInteractorImpl createPetInteractorImpl = new CreatePetInteractorImpl(null);
         assertNotNull(createPetInteractorImpl);
     }
-    
+
     @Test
     void newCreatePetInsteractorImpl()
     {
-        Pet petParameter = new Pet("1", "Tammy"); 
+        Pet petParameter = new Pet("1", "Tammy");
         assertNotNull(petRepositoryMock);
         when(petRepositoryMock.create(petParameter)).thenReturn(petParameter);
-        
+
         Pet pet = createPetInteractorImpl.execute(new Pet("1", "Tammy"));
         Mockito.verify(petRepositoryMock, Mockito.times(1)).create(petParameter);
-        
+
         assertEquals(petParameter, pet);
     }
 }

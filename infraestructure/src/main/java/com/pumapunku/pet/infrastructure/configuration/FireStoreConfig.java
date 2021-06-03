@@ -26,7 +26,7 @@ public class FireStoreConfig
         {
             credentials = GoogleCredentials.fromStream(inputStream);
         }
-        
+
         return FirestoreOptions.newBuilder().setCredentials(credentials).build().getService();
     }
 

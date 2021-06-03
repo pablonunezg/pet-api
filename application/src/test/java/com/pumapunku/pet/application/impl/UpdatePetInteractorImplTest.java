@@ -20,20 +20,20 @@ class UpdatePetInteractorImplTest
 
     @Mock
     private PetRepository petRepositoryMock;
-    
+
     @Test
     void newCreatePetInteractorImpl()
     {
         UpdatePetInteractorImpl updatePetInteractorImpl = new UpdatePetInteractorImpl(null);
         assertNotNull(updatePetInteractorImpl);
     }
-    
+
     @Test
     void newCreatePetInsteractorImpl()
     {
-        Pet petParameter = new Pet("1", "Tammy"); 
+        Pet petParameter = new Pet("1", "Tammy");
         assertNotNull(petRepositoryMock);
-        
+
         updatePetInteractorImpl.execute(new Pet("1", "Tammy"));
         Mockito.verify(petRepositoryMock, Mockito.times(1)).update(petParameter);
     }

@@ -1,7 +1,7 @@
 apply plugin: 'pmd'
 apply plugin: 'com.github.spotbugs'
-apply plugin: 'checkstyle' 
-apply plugin: 'jacoco' 
+apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
 
 pmd {
     consoleOutput = true

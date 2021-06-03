@@ -10,7 +10,7 @@ subprojects {
 
   group = 'com.pumapunku'
   sourceCompatibility = JavaVersion.VERSION_11
-   
+
   if (!isRelease.toBoolean())
   {
     version += '-SNAPSHOT'
@@ -27,11 +27,11 @@ subprojects {
   repositories {
     mavenCentral()
   }
-  
+
   test {
     useJUnitPlatform()
   }
-  
+
   task sayHello {
     doLast { println "Hello from ${project.name}" }
   }

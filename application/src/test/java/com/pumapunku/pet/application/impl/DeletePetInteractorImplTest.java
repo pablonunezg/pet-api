@@ -16,7 +16,7 @@ class DeletePetInteractorImplTest
 {
     @InjectMocks
     private DeletePetInteractorImpl deletePetInteractorImpl;
-    
+
     @Mock
     private PetRepository petRepositoryMock;
 
@@ -25,7 +25,7 @@ class DeletePetInteractorImplTest
     {
         assertNotNull(deletePetInteractorImpl);
     }
-    
+
     @Test
     void newCreatePetInsteractorImpl()
     {

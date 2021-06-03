@@ -26,7 +26,7 @@ class PetRepositoryImplTest
     void create()
     {
         when(PetpFirestoreRepository.create(new PetCollection(null, "Tammy"))).thenReturn(new PetCollection("33", "Tammy"));
-        
+
         Pet pet = petRepository.create(new Pet(null, "Tammy"));
         assertEquals(new Pet("33", "Tammy"), pet);
     }
@@ -37,7 +37,7 @@ class PetRepositoryImplTest
         petRepository.update(new Pet("1a", "Tammy"));
         verify(PetpFirestoreRepository, times(1)).update(new PetCollection("1a", "Tammy"));
     }
-    
+
     @Test
     void delete()
     {
@@ -45,4 +45,3 @@ class PetRepositoryImplTest
         verify(PetpFirestoreRepository, times(1)).delete("1");
     }
 }
-    
