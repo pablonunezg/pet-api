@@ -1,6 +1,7 @@
 plugins {
     id "org.springframework.boot" version "${springVersion}"
     id "io.spring.dependency-management" version "${springDependencyManagement}"
+    id "maven-publish"
 }
 
 configurations {
@@ -42,4 +43,16 @@ compileJava.dependsOn deleteMapStructFile
 jar {
     enabled = true
 	finalizedBy copyMapStructFile
+}
+
+publishing {
+  publications {
+      maven(MavenPublication) {
+          artifact jar
+      }
+  }
+
+  repositories {
+      mavenLocal()
+  }
 }

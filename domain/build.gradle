@@ -1,3 +1,7 @@
+plugins {
+    id "maven-publish"
+}
+
 dependencies {
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
@@ -7,4 +11,16 @@ dependencies {
 
     testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+publishing {
+  publications {
+      maven(MavenPublication) {
+          artifact jar
+      }
+  }
+
+  repositories {
+      mavenLocal()
+  }
 }

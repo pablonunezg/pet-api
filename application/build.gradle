@@ -1,3 +1,7 @@
+plugins {
+    id "maven-publish"
+}
+
 dependencies {
     implementation project(':domain')
     implementation 'javax.inject:javax.inject:1'
@@ -13,4 +17,16 @@ dependencies {
 
 	testImplementation 'org.junit.platform:junit-platform-engine:1.7.2'
 	testImplementation 'org.mockito:mockito-junit-jupiter:3.10.0'
+}
+
+publishing {
+  publications {
+      maven(MavenPublication) {
+          artifact jar
+      }
+  }
+
+  repositories {
+      mavenLocal()
+  }
 }
