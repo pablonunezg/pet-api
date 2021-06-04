@@ -28,8 +28,8 @@ bootJar {
     enabled = false
 }
 
-jar {
-    enabled = true
+task deleteMapStructFile(type: Delete) {
+  delete fileTree('src/main/java/com/pumapunku/pet/api/mapper/') { include '**/*Impl.java' }
 }
 
 task copyMapStructFile(type: Copy) {
@@ -37,18 +37,9 @@ task copyMapStructFile(type: Copy) {
     into 'src/main/java'
 }
 
-task deleteMapStructFile(type: Delete) {
-  delete fileTree('src/main/java/com/pumapunku/pet/api/mapper/') { include '**/*Impl.java' }
-}
+compileJava.dependsOn deleteMapStructFile
 
-jar.dependsOn deleteMapStructFile
-
-task myJar {
-    dependsOn 'clean'
-    dependsOn 'deleteMapStructFile'
-    dependsOn 'jar'
-    dependsOn 'copyMapStructFile'
-    tasks.findByName('deleteMapStructFile').mustRunAfter 'clean'
-    tasks.findByName('jar').mustRunAfter 'deleteMapStructFile'
-    tasks.findByName('copyMapStructFile').mustRunAfter 'jar'
+jar {
+    enabled = true
+	finalizedBy copyMapStructFile
 }

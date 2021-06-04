@@ -30,6 +30,10 @@ subprojects {
 
   test {
     useJUnitPlatform()
+	
+	testLogging {
+	    exceptionFormat 'full'
+	}
   }
 
   task sayHello {
