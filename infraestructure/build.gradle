@@ -16,8 +16,8 @@ dependencies {
     implementation 'javax.inject:javax.inject:1'
 
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'com.google.firebase:firebase-admin:7.2.0'
-    implementation ("net.coobird:thumbnailator:0.4.14")
+    implementation 'com.google.firebase:firebase-admin:8.1.0'
+    implementation ("net.coobird:thumbnailator:0.4.17")
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

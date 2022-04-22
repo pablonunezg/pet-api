@@ -1,16 +1,19 @@
 plugins {
-   id "com.github.spotbugs" version "4.7.1" apply false
+   id "com.github.spotbugs" version "5.0.4" apply false
    id "checkstyle"
    id "jacoco"
    id "maven-publish"
+//   id "net.ltgt.apt-eclipse" version "0.21"
 }
+
+//apply plugin: 'net.ltgt.apt-eclipse'
 
 subprojects {
   apply plugin: "java"
   apply from: "$rootDir/gradle/gradle/quality.gradle"
 
   group = 'com.pumapunku'
-  sourceCompatibility = JavaVersion.VERSION_11
+  sourceCompatibility = JavaVersion.VERSION_17
 
   if (!isRelease.toBoolean())
   {
@@ -18,10 +21,10 @@ subprojects {
   }
 
   ext {
-    springVersion = "2.4.6"
+    springVersion = "2.6.7"
     springDependencyManagement = "1.0.11.RELEASE"
     mapstructVersion = "1.4.2.Final"
-    lombokVersion = "1.18.20"
+    lombokVersion = "1.18.24"
     lombokMapstructBindingVersion = "0.2.0"
   }
 
@@ -40,6 +43,15 @@ subprojects {
   task sayHello {
     doLast { println "Hello from ${project.name}" }
   }
+  
+/*dependencies {
+    implementation "org.mapstruct.extensions.spring:mapstruct-spring-annotations:0.1.1"
+    annotationProcessor "org.mapstruct.extensions.spring:mapstruct-spring-extensions:0.1.1"
+
+    // If you are using MapStruct Spring Extensions in test code
+    testAnnotationProcessor "org.mapstruct.extensions.spring:mapstruct-spring-extensions:0.1.1"
+}*/
+
 }
 
 task sayAllHello
