@@ -30,20 +30,20 @@ bootJar {
     enabled = false
 }
 
-//task deleteMapStructFile(type: Delete) {
-//  delete fileTree('src/main/java/com/pumapunku/pet/api/mapper/') { include '**/*Impl.java' }
-//}
+task deleteMapStructFile(type: Delete) {
+  delete fileTree('src/main/java/com/pumapunku/pet/api/mapper/') { include '**/*Impl.java' }
+}
 
-//task copyMapStructFile(type: Copy) {
-//    from 'build/generated/sources/annotationProcessor/java/main'
-//    into 'src/main/java'
-//}
+task copyMapStructFile(type: Copy) {
+    from 'build/generated/sources/annotationProcessor/java/main'
+    into 'src/main/java'
+}
 
-//compileJava.dependsOn deleteMapStructFile
+compileJava.dependsOn deleteMapStructFile
 
 jar {
     enabled = true
-//	finalizedBy copyMapStructFile
+	finalizedBy copyMapStructFile
 }
 
 publishing {

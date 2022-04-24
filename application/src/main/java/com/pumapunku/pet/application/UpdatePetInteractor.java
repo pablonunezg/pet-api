@@ -4,5 +4,5 @@ import com.pumapunku.pet.domain.Pet;
 
 public interface UpdatePetInteractor
 {
-    void execute(Pet request);
+    void execute(Pet pet);
 }

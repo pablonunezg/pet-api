@@ -15,7 +15,8 @@ public class PetRepositoryImpl implements PetRepository
     @Override
     public Pet create(Pet pet)
     {
-        PetCollection petResult = petRepository.create(new PetCollection(pet.getId(), pet.getName()));
+    	PetCollection petCollection = new PetCollection(pet.getId(), pet.getName());
+        PetCollection petResult = petRepository.create(petCollection);
         pet.setId(petResult.getId());
 
         return pet;

@@ -13,7 +13,7 @@ public class AlreadyExistsException extends RuntimeException
 
     public AlreadyExistsException(String collectionName, String id)
     {
-        super(String.format("%s id already exists in the table", id));
+        super(String.format("%s id already exists in the table %s", id, collectionName));
         this.id = id;
         this.collectionName = collectionName;
     }
