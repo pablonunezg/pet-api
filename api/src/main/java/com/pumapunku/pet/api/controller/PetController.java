@@ -7,9 +7,17 @@ import com.pumapunku.pet.application.CreatePetInteractor;
 import com.pumapunku.pet.application.DeletePetInteractor;
 import com.pumapunku.pet.application.UpdatePetInteractor;
 import com.pumapunku.pet.domain.Pet;
+import com.pumapunku.pet.domain.repository.PetRepository;
+
+import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,25 +28,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/pet")
+@RequiredArgsConstructor
 public class PetController
 {
-    private transient CreatePetInteractor createPetInteractor;
-    private transient UpdatePetInteractor updatePetInteractor;
-    private transient DeletePetInteractor deletePetInteractor;
+    private final transient CreatePetInteractor createPetInteractor;
+    private final transient UpdatePetInteractor updatePetInteractor;
+    private final transient DeletePetInteractor deletePetInteractor;
+    private final transient PetRepository petRepository;
 
-    public PetController(
-            CreatePetInteractor createPetInteractor,
-            UpdatePetInteractor updatePetInteractor,
-            DeletePetInteractor deletePetInteractor)
+   
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<PetResponse> getPets()
     {
-        this.createPetInteractor = createPetInteractor;
-        this.updatePetInteractor = updatePetInteractor;
-        this.deletePetInteractor = deletePetInteractor;
+        List<Pet> pets = petRepository.getPets();
+
+        return pets.stream().map(p -> PetMapper.INSTANCE.toPetResponse(p))
+        		            .toList();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PetResponse create(@RequestBody PetRequest petRequest)
+    public PetResponse create(@Valid @RequestBody PetRequest petRequest)
     {
         Pet pet = PetMapper.INSTANCE.toPet(petRequest);
         return PetResponse.from(createPetInteractor.execute(pet));

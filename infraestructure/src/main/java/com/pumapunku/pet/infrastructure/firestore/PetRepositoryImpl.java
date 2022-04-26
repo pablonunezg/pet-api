@@ -1,5 +1,7 @@
 package com.pumapunku.pet.infrastructure.firestore;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -33,4 +35,12 @@ public class PetRepositoryImpl implements PetRepository
     {
         petRepository.delete(id);
     }
+
+	@Override
+	public List<Pet> getPets()
+	{
+		List<PetCollection> petCollection = petRepository.retrieveAll();
+		
+		return petCollection.stream().map(p->new Pet(p.getId(), p.getName())).toList();
+	}
 }
